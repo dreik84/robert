@@ -23,9 +23,37 @@ class ArrayApp {
 
 		nElems = 10;
 
+		// Вывод элеметнов
 		for (j = 0; j < nElems; j++) 
 			System.out.print(arr[j] + " ");
 		System.out.println();
+		
+		// Поиск элемента
+		searchKey = 66;
+		for (j = 0; j < nElems; j++)
+			if (arr[j] == searchKey)
+				break;
 
+		if (j == nElems)
+			System.out.println("Can't find " + searchKey);
+		else
+			System.out.println("Found " + searchKey);
+		
+		// Удаление элемента
+		searchKey = 55;
+
+		for (j = 0; j < nElems; j++)
+			if (arr[j] == searchKey)
+				break;
+		
+		for (int k = j; k < nElems - 1; k++)
+			arr[k] = arr[k + 1];
+
+		nElems--;
+
+		// Вывод элеметнов
+                for (j = 0; j < nElems; j++)
+                        System.out.print(arr[j] + " ");
+                System.out.println();
 	}
 }
