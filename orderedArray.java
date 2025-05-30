@@ -1,12 +1,12 @@
-// Класс массива с высокоуровневым интерфейсом
-// Запуск программы: java HighArrayApp
+// Работа с классом упорядоченного массива
+// Запуск программы: java  OrderedApp
 
-class HighArrayApp {
+class OrderedApp {
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		HighArray arr;
-		arr = new HighArray(maxSize);
+		OrdArray arr;
+		arr = new OrdArray(maxSize);
 
 		arr.insert(77);
 		arr.insert(99);
@@ -21,8 +21,9 @@ class HighArrayApp {
 
 		arr.display();
 
-		int searchKey = 35;
-		if (arr.find(searchKey)) System.out.println("Found " + searchKey);
+		int searchKey = 55;
+		if (arr.find(searchKey) != arr.size()) 
+			System.out.println("Found " + searchKey);
 		else System.out.println("Can't find " + searchKey);
 
 		arr.delete(00);
@@ -33,29 +34,45 @@ class HighArrayApp {
 	}
 }
 
-class HighArray {
+class OrdArray {
 	
 	private long[] a;
 	private int nElems;
 
-	public HighArray(int max) {
+	public OrdArray(int max) {
 		a = new long[max];
 		nElems = 0;
 	}
 
-	public boolean find(long searchKey) {
-		int j;
-		
-		for (j = 0; j < nElems; j++)
-		       if (a[j] == searchKey) break;
+	public int size() { return nElems; }
 
-		if (j == nElems) return false;
-		else return true;
+	public int find(long searchKey) {
+		int lowerBound = 0;
+		int upperBound = nElems - 1;
+		int curIn;
+
+		while (true) {
+			curIn = (lowerBound + upperBound) / 2;
+			if (a[curIn] == searchKey) return curIn;
+			else if (lowerBound > upperBound) return nElems;
+			else {
+				if (a[curIn] < searchKey) lowerBound = curIn + 1;
+				else upperBound = curIn - 1;
+			}
+		}
 	}
 
 	public void insert(long value) {
-		a[nElems] = value;
-		nElems++;		
+		int j;
+		
+		for (j = 0; j < nElems; j++) 
+			if (a[j] > value) break;
+
+		for (int k = nElems; k > j; k--)
+			a[k] = a[k - 1];
+
+		a[j] = value;
+		nElems++;
 	}
 
 	public boolean delete(long value) {
