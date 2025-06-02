@@ -1,68 +1,73 @@
-// Класс массива с высокоуровневым интерфейсом
-// Запуск программы: java HighArrayApp
+// Объекты как элементы данных
+// Запуск программы: java ClassDataApp
 
-class HighArrayApp {
+class ClassDataApp {
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		HighArray arr;
-		arr = new HighArray(maxSize);
+		ClassDataArray arr;
+		arr = new ClassDataArray(maxSize);
 
-		arr.insert(77);
-		arr.insert(99);
-		arr.insert(44);
-		arr.insert(55);
-		arr.insert(22);
-		arr.insert(88);
-		arr.insert(11);
-		arr.insert(00);
-		arr.insert(66);
-		arr.insert(33);
+		arr.insert("Evans", "Patty", 24);
+		arr.insert("Smith", "Lorraine", 37);
+		arr.insert("Yee", "Tom", 43);
+		arr.insert("Adams", "Henry", 63);
+		arr.insert("Hashimoto", "Sato", 21);
+		arr.insert("Stimson", "Henry", 29);
+		arr.insert("Velasquez", "Jose", 72);
+		arr.insert("Lamarque", "Henry", 54);
+		arr.insert("Vang", "Minh", 22);
+		arr.insert("Creswell", "Lucinda", 18);
 
-		arr.display();
+		arr.displayA();
 
-		int searchKey = 35;
-		if (arr.find(searchKey)) System.out.println("Found " + searchKey);
+		String searchKey = "Stimson";
+		Person found = arr.find(searchKey);
+
+		if (found != null) {
+		       	System.out.print("Found "); 
+			found.displayPerson();
+		}
 		else System.out.println("Can't find " + searchKey);
 
-		arr.delete(00);
-		arr.delete(55);
-		arr.delete(99);
+		arr.delete("Smith");
+		arr.delete("Yee");
+		arr.delete("Creswell");
 
-		arr.display();
+		arr.displayA();
 	}
 }
 
-class HighArray {
+class ClassDataArray {
 	
-	private long[] a;
+	private Person[] a;
 	private int nElems;
 
-	public HighArray(int max) {
-		a = new long[max];
+	public ClassDataArray(int max) {
+		a = new Person[max];
 		nElems = 0;
 	}
 
-	public boolean find(long searchKey) {
+	public Person find(String searchName) {
 		int j;
 		
 		for (j = 0; j < nElems; j++)
-		       if (a[j] == searchKey) break;
+		       if (a[j].getLast().equals(searchName)) break;
 
-		if (j == nElems) return false;
-		else return true;
+		if (j == nElems) return null;
+		else return a[j];
 	}
 
-	public void insert(long value) {
-		a[nElems] = value;
+	public void insert(String last, String first, int age) {
+		a[nElems] = new Person(last, first, age);
 		nElems++;		
 	}
 
-	public boolean delete(long value) {
+	public boolean delete(String searchName) {
 		int j;
 
 		for (j = 0; j < nElems; j++) 
-			if (value == a[j]) break;
+			if (a[j].getLast().equals(searchName)) break;
 
 		if (j == nElems) return false;
 		else {
@@ -73,9 +78,7 @@ class HighArray {
 		}
 	}
 
-	public void display() {
-		for (int j = 0; j < nElems; j++) System.out.print(a[j] + " ");
-
-		System.out.println();
+	public void displayA() {
+		for (int j = 0; j < nElems; j++) a[j].displayPerson();
 	}
 }
