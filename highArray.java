@@ -30,6 +30,8 @@ class HighArrayApp {
 		arr.delete(99);
 
 		arr.display();
+
+		System.out.println("Max value: " + arr.getMax());
 	}
 }
 
@@ -51,6 +53,16 @@ class HighArray {
 
 		if (j == nElems) return false;
 		else return true;
+	}
+
+	public long getMax() {
+		long res = -1;
+
+		for (int j = 0; j < nElems; j++) {
+			res = (res > a[j]) ? res : a[j];
+		}
+
+		return res;
 	}
 
 	public void insert(long value) {
