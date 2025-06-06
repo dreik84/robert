@@ -35,6 +35,12 @@ class HighArrayApp {
 		System.out.println("Max value remove: " + arr.removeMax());
 
 		arr.display();
+
+		long[] sortedArr = new long[10];
+		
+		for (int i = 0; i < sortedArr.length; i++) 
+			sortedArr[i] = arr.removeMax();
+		
 	}
 }
 
@@ -70,8 +76,8 @@ class HighArray {
 
 	public long removeMax() {
 		int j;
-		long res = -1;
-		int resIndex = -1;
+		long res = 0;
+		int resIndex = 0;
 
 		for (j = 0; j < nElems; j++) { 
 			if (res < a[j]) {
