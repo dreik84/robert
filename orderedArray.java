@@ -63,10 +63,7 @@ class OrdArray {
 	}
 
 	public void insert(long value) {
-		int j;
-		
-		for (j = 0; j < nElems; j++) 
-			if (a[j] > value) break;
+		int j = find(value);
 
 		for (int k = nElems; k > j; k--)
 			a[k] = a[k - 1];
@@ -76,10 +73,7 @@ class OrdArray {
 	}
 
 	public boolean delete(long value) {
-		int j;
-
-		for (j = 0; j < nElems; j++) 
-			if (value == a[j]) break;
+		int j = find(value);
 
 		if (j == nElems) return false;
 		else {
