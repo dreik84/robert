@@ -14,6 +14,7 @@ class HighArrayApp {
 		arr.insert(55);
 		arr.insert(22);
 		arr.insert(88);
+		arr.insert(44);
 		arr.insert(11);
 		arr.insert(00);
 		arr.insert(66);
@@ -36,11 +37,13 @@ class HighArrayApp {
 
 		arr.display();
 
+		arr.noDups();
+                arr.display();
+
 		long[] sortedArr = new long[10];
 		
 		for (int i = 0; i < sortedArr.length; i++) 
 			sortedArr[i] = arr.removeMax();
-		
 	}
 }
 
@@ -52,6 +55,18 @@ class HighArray {
 	public HighArray(int max) {
 		a = new long[max];
 		nElems = 0;
+	}
+
+	public void noDups() {
+
+		for (int i = 0; i < nElems; i++) 
+			for (int j = i + 1; j < nElems; j++)
+				if (a[i] == a[j]) {
+					for (int k = j; k < nElems; k++) 
+						a[k] = a[k + 1];
+
+					nElems--;
+				}
 	}
 
 	public boolean find(long searchKey) {
