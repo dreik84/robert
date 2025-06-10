@@ -1,13 +1,13 @@
-// Пузырьковая сортировка
-// Запуск программы: java BubbleSortApp
+// Сортировка методом выбора
+// Запуск программы: java SelectSortApp
 
-class BubbleSortApp {
+class SelectSortApp {
 	
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		ArrayBub arr;
-		arr = new ArrayBub(maxSize);
+		ArraySel arr;
+		arr = new ArraySel(maxSize);
 
 		arr.insert(77);
 		arr.insert(99);
@@ -21,17 +21,17 @@ class BubbleSortApp {
 		arr.insert(33);
 
 		arr.display();
-		arr.bubbleSort();
+		arr.selectoinSort();
 		arr.display();
 	}
 }
 
-class ArrayBub {
+class ArraySel {
 
 	private long a[];
 	private int nElems;
 
-	public ArrayBub(int max) {
+	public ArraySel(int max) {
 		a = new long[max];
 		nElems = 0;
 	}
@@ -47,13 +47,18 @@ class ArrayBub {
 		System.out.println();
 	}
 
-	public void bubbleSort() {
-		int out, in;
+	public void selectoinSort() {
+		int out, in, min;
 
-		for (out = nElems - 1; out > 1; out--)
-			for (in = 0; in < out; in++) 
-				if (a[in] > a[in + 1])
-					swap(in, in + 1);
+		for (out = 0; out < nElems; out++) {
+			min = out;
+
+			for (in = out + 1; in < nElems; in++) 
+				if (a[in] < a[min]) 
+					min = in;
+
+			swap(out, min);
+		}
 	}
 
 	private void swap(int one, int two) {
