@@ -1,13 +1,13 @@
-// Сортировка методом выбора
-// Запуск программы: java SelectSortApp
+// Сортировка методом вставки
+// Запуск программы: java InsertSortApp
 
-class SelectSortApp {
+class InsertSortApp {
 	
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		ArraySel arr;
-		arr = new ArraySel(maxSize);
+		ArrayIns arr;
+		arr = new ArrayIns(maxSize);
 
 		arr.insert(77);
 		arr.insert(99);
@@ -21,17 +21,17 @@ class SelectSortApp {
 		arr.insert(33);
 
 		arr.display();
-		arr.selectoinSort();
+		arr.insertionSort();
 		arr.display();
 	}
 }
 
-class ArraySel {
+class ArrayIns {
 
 	private long a[];
 	private int nElems;
 
-	public ArraySel(int max) {
+	public ArrayIns(int max) {
 		a = new long[max];
 		nElems = 0;
 	}
@@ -47,17 +47,18 @@ class ArraySel {
 		System.out.println();
 	}
 
-	public void selectoinSort() {
-		int out, in, min;
+	public void insertionSort() {
+		int out, in;
 
-		for (out = 0; out < nElems; out++) {
-			min = out;
+		for (out = 1; out < nElems; out++) {
+			long temp = a[out];
+			in = out;
 
-			for (in = out + 1; in < nElems; in++) 
-				if (a[in] < a[min]) 
-					min = in;
-
-			swap(out, min);
+			while (in > 0 && a[in - 1] >= temp) {
+				a[in] = a[in - 1];
+				--in;
+			}
+			a[in] = temp;
 		}
 	}
 
