@@ -1,48 +1,52 @@
-// Сортировка методом вставки
-// Запуск программы: java InsertSortApp
+// Сортировка объектов методом вставки
+// Запуск программы: java ObjectSortApp
 
-class InsertSortApp {
+class ObjectSortApp {
 	
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		ArrayIns arr;
-		arr = new ArrayIns(maxSize);
+		ArrayInOb arr;
+		arr = new ArrayInOb(maxSize);
 
-		arr.insert(77);
-		arr.insert(99);
-		arr.insert(44);
-		arr.insert(55);
-		arr.insert(22);
-		arr.insert(88);
-		arr.insert(11);
-		arr.insert(00);
-		arr.insert(66);
-		arr.insert(33);
-
+		arr.insert("Evans", "Patty", 24);
+		arr.insert("Smith", "Lorraine", 37);
+		arr.insert("Yee", "Tom", 43);
+		arr.insert("Adams", "Henry", 63);
+		arr.insert("Hashimoto", "Sato", 21);
+		arr.insert("Stimson", "Henry", 29);
+		arr.insert("Velasquez", "Jose", 72);
+		arr.insert("Lamarque", "Henry", 54);
+		arr.insert("Vang", "Minh", 22);
+		arr.insert("Creswell", "Lucinda", 18);
+		
+		System.out.println("Before sorting:");
 		arr.display();
+
 		arr.insertionSort();
+
+		System.out.println("After sorting:");
 		arr.display();
 	}
 }
 
-class ArrayIns {
+class ArrayInOb {
 
-	private long a[];
+	private Person a[];
 	private int nElems;
 
-	public ArrayIns(int max) {
-		a = new long[max];
+	public ArrayInOb(int max) {
+		a = new Person[max];
 		nElems = 0;
 	}
 
-	public void insert(long value) {
-		a[nElems] = value;
+	public void insert(String last, String first, int age) {
+		a[nElems] = new Person(last, first, age);
 		nElems++;
 	}
 
 	public void display() {
-		for (int j = 0; j < nElems; j++) System.out.print(a[j] + " ");
+		for (int j = 0; j < nElems; j++) a[j].displayPerson();
 		
 		System.out.println();
 	}
@@ -51,10 +55,11 @@ class ArrayIns {
 		int out, in;
 
 		for (out = 1; out < nElems; out++) {
-			long temp = a[out];
+			Person temp = a[out];
 			in = out;
 
-			while (in > 0 && a[in - 1] >= temp) {
+			while (in > 0 && 
+				a[in - 1].getLast().compareTo(temp.getLast()) > 0) {
 				a[in] = a[in - 1];
 				--in;
 			}
@@ -63,7 +68,7 @@ class ArrayIns {
 	}
 
 	private void swap(int one, int two) {
-		long temp = a[one];
+		Person temp = a[one];
 		a[one] = a[two];
 		a[two] = temp;
 	}
