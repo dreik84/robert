@@ -23,6 +23,21 @@ class BubbleSortApp {
 		arr.display();
 		arr.bubbleSort();
 		arr.display();
+		
+		maxSize = 10000;
+		ArrayBub bigArr = new ArrayBub(maxSize);
+
+		for (int j = 0; j < maxSize; j++) {
+			long n = (long) (java.lang.Math.random() * (maxSize - 1));
+			bigArr.insert(n);
+		}
+
+		long start = System.currentTimeMillis();
+		bigArr.bubbleSort();
+		long end = System.currentTimeMillis();
+
+		System.out.println("Bublle Sort: " + maxSize + " elements per " +
+			(end - start) + " ms");
 	}
 }
 
