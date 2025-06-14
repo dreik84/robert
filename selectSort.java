@@ -23,6 +23,21 @@ class SelectSortApp {
 		arr.display();
 		arr.selectoinSort();
 		arr.display();
+
+		maxSize = 10000;
+                ArraySel bigArr = new ArraySel(maxSize);
+
+                for (int j = 0; j < maxSize; j++) {
+                        long n = (long) (java.lang.Math.random() * (maxSize - 1));
+                        bigArr.insert(n);
+                }
+
+                long start = System.currentTimeMillis();
+                bigArr.selectoinSort();
+                long end = System.currentTimeMillis();
+
+                System.out.println("Select Sort: " + maxSize + " elements per " +
+                        (end - start) + " ms");
 	}
 }
 
