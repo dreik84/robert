@@ -23,6 +23,21 @@ class InsertSortApp {
 		arr.display();
 		arr.insertionSort();
 		arr.display();
+
+		maxSize = 10000;
+                ArrayIns bigArr = new ArrayIns(maxSize);
+
+                for (int j = 0; j < maxSize; j++) {
+                        long n = (long) (java.lang.Math.random() * (maxSize - 1));
+                        bigArr.insert(n);
+                }
+
+                long start = System.currentTimeMillis();
+                bigArr.insertionSort();
+                long end = System.currentTimeMillis();
+
+                System.out.println("Insert Sort: " + maxSize + " elements per " +
+                        (end - start) + " ms");
 	}
 }
 
