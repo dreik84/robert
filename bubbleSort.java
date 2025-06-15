@@ -21,8 +21,11 @@ class BubbleSortApp {
 		arr.insert(33);
 
 		arr.display();
-		arr.bubbleSort();
+		arr.reversedBubbleSort();
 		arr.display();
+
+                arr.bubbleSort();
+                arr.display();
 		
 		maxSize = 10000;
 		ArrayBub bigArr = new ArrayBub(maxSize);
@@ -35,6 +38,7 @@ class BubbleSortApp {
 		long start = System.currentTimeMillis();
 		bigArr.bubbleSort();
 		long end = System.currentTimeMillis();
+
 
 		System.out.println("Bublle Sort: " + maxSize + " elements per " +
 			(end - start) + " ms");
@@ -70,6 +74,15 @@ class ArrayBub {
 				if (a[in] > a[in + 1])
 					swap(in, in + 1);
 	}
+
+	public void reversedBubbleSort() {
+                int out, in;
+
+                for (out = nElems - 1; out > 1; out--)
+                        for (in = 0; in < out; in++)
+                                if (a[in] < a[in + 1])
+                                        swap(in, in + 1);
+        }
 
 	private void swap(int one, int two) {
 		long temp = a[one];
