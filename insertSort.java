@@ -24,6 +24,9 @@ class InsertSortApp {
 		arr.insertionSort();
 		arr.display();
 
+		arr.reversedInsertionSort();
+                arr.display();
+
 		maxSize = 10000;
                 ArrayIns bigArr = new ArrayIns(maxSize);
 
@@ -76,6 +79,21 @@ class ArrayIns {
 			a[in] = temp;
 		}
 	}
+
+	public void reversedInsertionSort() {
+                int out, in;
+
+                for (out = 1; out < nElems; out++) {
+                        long temp = a[out];
+                        in = out;
+
+                        while (in > 0 && a[in - 1] <= temp) {
+                                a[in] = a[in - 1];
+                                --in;
+                        }
+                        a[in] = temp;
+                }
+        }
 
 	private void swap(int one, int two) {
 		long temp = a[one];
