@@ -24,6 +24,9 @@ class SelectSortApp {
 		arr.selectoinSort();
 		arr.display();
 
+		arr.reversedSelectoinSort();
+                arr.display();
+
 		maxSize = 10000;
                 ArraySel bigArr = new ArraySel(maxSize);
 
@@ -75,6 +78,20 @@ class ArraySel {
 			swap(out, min);
 		}
 	}
+
+	public void reversedSelectoinSort() {
+                int out, in, min;
+
+                for (out = 0; out < nElems; out++) {
+                        min = out;
+
+                        for (in = out + 1; in < nElems; in++)
+                                if (a[in] > a[min])
+                                        min = in;
+
+                        swap(out, min);
+                }
+        }
 
 	private void swap(int one, int two) {
 		long temp = a[one];
