@@ -69,10 +69,15 @@ class ArrayBub {
 	public void bubbleSort() {
 		int out, in;
 
-		for (out = nElems - 1; out > 1; out--)
+		for (out = nElems - 1; out > nElems / 2 - 1; out--) {
 			for (in = 0; in < out; in++) 
 				if (a[in] > a[in + 1])
 					swap(in, in + 1);
+			
+			for (in = out - 1; in > nElems - out - 1; in--)
+                                if (a[in] > a[in + 1])
+                                        swap(in, in + 1);
+		}
 	}
 
 	public void reversedBubbleSort() {
