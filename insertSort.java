@@ -13,6 +13,8 @@ class InsertSortApp {
 		arr.insert(99);
 		arr.insert(44);
 		arr.insert(55);
+		arr.insert(88);		
+		arr.insert(55);
 		arr.insert(22);
 		arr.insert(88);
 		arr.insert(11);
@@ -26,6 +28,9 @@ class InsertSortApp {
 
 		arr.reversedInsertionSort();
                 arr.display();
+
+		arr.noDups();
+		arr.display();
 
 		maxSize = 10000;
                 ArrayIns bigArr = new ArrayIns(maxSize);
@@ -63,6 +68,19 @@ class ArrayIns {
 		for (int j = 0; j < nElems; j++) System.out.print(a[j] + " ");
 		
 		System.out.println();
+	}
+
+	public void noDups() {
+		
+		for (int i = 0; i < nElems; i++) 
+			for (int j = i + 1; j < nElems; j++)
+				if (a[i] == a[j]) {
+					for (int k = j; k < nElems - 1; k++)
+						a[k] = a[k + 1];
+
+					j--;
+					nElems--;
+				}
 	}
 
 	public void insertionSort() {
