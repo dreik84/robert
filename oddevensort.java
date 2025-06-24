@@ -1,13 +1,13 @@
-// Пузырьковая сортировка
-// Запуск программы: java BubbleSortApp
+// Сортировка методом четно-нечетных перестановок
+// Запуск программы: java OddEvenSortApp
 
-class BubbleSortApp {
+class OddEvenSortApp {
 	
 	public static void main(String[] args) {
 		
 		int maxSize = 100;
-		ArrayBub arr;
-		arr = new ArrayBub(maxSize);
+		ArrayOddEven arr;
+		arr = new ArrayOddEven(maxSize);
 
 		arr.insert(77);
 		arr.insert(99);
@@ -21,14 +21,11 @@ class BubbleSortApp {
 		arr.insert(33);
 
 		arr.display();
-		arr.reversedBubbleSort();
-		arr.display();
-
-                arr.bubbleSort();
+                arr.oddEvenSort();
                 arr.display();
 		
 		maxSize = 10000;
-		ArrayBub bigArr = new ArrayBub(maxSize);
+		ArrayOddEven bigArr = new ArrayOddEven(maxSize);
 
 		for (int j = 0; j < maxSize; j++) {
 			long n = (long) (java.lang.Math.random() * (maxSize - 1));
@@ -36,21 +33,21 @@ class BubbleSortApp {
 		}
 
 		long start = System.currentTimeMillis();
-		bigArr.bubbleSort();
+		bigArr.oddEvenSort();
 		long end = System.currentTimeMillis();
 
 
-		System.out.println("Bublle Sort: " + maxSize + " elements per " +
+		System.out.println("OddEven Sort: " + maxSize + " elements per " +
 			(end - start) + " ms");
 	}
 }
 
-class ArrayBub {
+class ArrayOddEven {
 
 	private long a[];
 	private int nElems;
 
-	public ArrayBub(int max) {
+	public ArrayOddEven(int max) {
 		a = new long[max];
 		nElems = 0;
 	}
@@ -66,28 +63,19 @@ class ArrayBub {
 		System.out.println();
 	}
 
-	public void bubbleSort() {
-		int out, in;
+	public void oddEvenSort() {
 
-		for (out = nElems - 1; out > nElems / 2 - 1; out--) {
-			for (in = 0; in < out; in++) 
-				if (a[in] > a[in + 1])
-					swap(in, in + 1);
+		for (int i = 0 ; i < nElems; i++) {
 			
-			for (in = out - 1; in > nElems - out - 1; in--)
-                                if (a[in] > a[in + 1])
-                                        swap(in, in + 1);
+			if (i % 2 == 0) {				
+				for (int j = 0; j <= nElems - 2; j += 2) // нечетная 
+					if (a[j] > a[j + 1]) swap(j, j + 1);
+			} else {
+				for (int j = 1; j <= nElems - 2; j += 2) // четная
+					if (a[j] > a[j + 1])swap(j, j + 1);
+			}
 		}
 	}
-
-	public void reversedBubbleSort() {
-                int out, in;
-
-                for (out = nElems - 1; out > 1; out--)
-                        for (in = 0; in < out; in++)
-                                if (a[in] < a[in + 1])
-                                        swap(in, in + 1);
-        }
 
 	private void swap(int one, int two) {
 		long temp = a[one];
