@@ -85,17 +85,23 @@ class ArrayIns {
 
 	public void insertionSort() {
 		int out, in;
+		int count = 0;
 
 		for (out = 1; out < nElems; out++) {
 			long temp = a[out];
 			in = out;
 
-			while (in > 0 && a[in - 1] >= temp) {
-				a[in] = a[in - 1];
-				--in;
+			while (in > 0) {
+					
+				if (a[in - 1] >= temp) {
+					a[in] = a[in - 1];
+					count++;
+					--in;
+				} else break;
 			}
 			a[in] = temp;
 		}
+		System.out.println("Number of permutations: " + count);
 	}
 
 	public void reversedInsertionSort() {
