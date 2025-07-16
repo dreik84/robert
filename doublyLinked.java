@@ -1,6 +1,34 @@
 // Двусвязный список
 
+class DoublyLinkedApp {
+	
+	public static void main(String[] args) {
+		
+		DoublyLinkedList theList = new DoublyLinkedList();
 
+		theList.insertFirst(22);
+		theList.insertFirst(44);
+		theList.insertFirst(66);
+
+		theList.insertLast(11);
+		theList.insertLast(33);
+		theList.insertLast(55);
+
+		theList.displayForward();
+		theList.displayBackward();
+
+		theList.deleteFirst();
+		theList.deleteLast();
+		theList.deleteKey(11);
+
+		theList.displayForward();
+
+		theList.insertAfter(22, 77);
+		theList.insertAfter(33, 88);
+
+		theList.displayForward();
+	}
+}
 
 class Link {
 	
@@ -9,6 +37,8 @@ class Link {
 	public Link previous;
 
 	public Link(long d) { dData = d; }
+
+	public void displayLink() { System.out.print(dData + " "); }
 }
 
 class DoublyLinkedList {
@@ -16,7 +46,7 @@ class DoublyLinkedList {
 	private Link first;
 	private Link last;
 
-	public DoublylinkedList() {
+	public DoublyLinkedList() {
 		first = null;
 		last = null;
 	}
@@ -105,5 +135,27 @@ class DoublyLinkedList {
 		else current.next.previous = current.previous;
 
 		return current;
+	}
+
+	public void displayForward() {
+		System.out.print("List (first-->last): ");
+		Link current = first;
+
+		while (current != null) {
+			current.displayLink();
+			current = current.next;
+		}
+		System.out.println();
+	}
+
+	public void displayBackward() {
+		System.out.print("List (last-->first): ");
+		Link current = last;
+
+		while (current != null) {
+			current.displayLink();
+			current = current.previous;
+		}
+		System.out.println();
 	}
 }
