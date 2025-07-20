@@ -100,14 +100,14 @@ class LinkList {
 
 	public Link getFirst() { return first; }
 
-	public Link setFirts(Link f) { first = f; }
+	public void setFirst(Link f) { first = f; }
 
 	public boolean isEmpty() { return first == null; }
 
 	public ListIterator getIterator() { return new ListIterator(this); }
 
 	public void displayList() {
-		Link currnet = first;
+		Link current = first;
 
 		while (current != null) {
 			current.displayLink();
@@ -178,41 +178,10 @@ class ListIterator {
 		} else {
 			previous.next = current.next;
 			
-			if (atEnd) reset();
+			if (atEnd()) reset();
 			else current = current.next;
 		}
 
 		return value;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
