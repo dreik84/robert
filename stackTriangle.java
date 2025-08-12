@@ -42,7 +42,38 @@ class StackTriangleApp {
 					codePart = 3;
 				break;
 			case 3:
+				Params newParams = new Params(theseParams.n - 1, 4);
+				theStack.push(newParams);
+				codePart = 2;
+				break;
+			case 4:
+				theseParams = theStack.peek();
+				theAnswer = theAnswer + theseParams.n;
+				codePart = 5;
+				break;
+			case 5:
+				theseParams = theStack.peek();
+				codePart = theseParams.returnAddress;
+				theStack.pop();
+				break;
+			case 6:
+				return true;
 		}
+		return false;
+	}
+
+	public static String getString() throws IOException {
+		
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		String s = br.readLine();
+		return s;
+	}
+
+	public static int getInt() throws IOException {
+		
+		String s = getString();
+		return Integer.parseInt(s);
 	}
 }
 
