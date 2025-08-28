@@ -1,6 +1,6 @@
-// Бысрая сортировка с определением медианы по трем точкам
+// Бысрая сортировка с применением сортировки методом вставки
 
-class QuickSort2App {
+class QuickSort3App {
 	
 	public static void main(String[] args) {
 		
@@ -36,12 +36,15 @@ class ArrayIns {
 		System.out.println();
 	}
 
-	public void quickSort() { recQuickSort(0, nElems - 1); }
+	public void quickSort() { 
+		recQuickSort(0, nElems - 1);
+		// insertionSort(0, nElems - 1); 	
+	}
 
 	public void recQuickSort(int left, int right) {
 		int size = right - left + 1;
 
-		if (size <= 3) manualSort(left, right);
+		if (size < 10) insertionSort(left, right);
 		else {
 			long median = medianOf3(left, right);
 			int partition = partitionIt(left, right, median);
@@ -85,21 +88,19 @@ class ArrayIns {
 		return leftPtr;
 	}
 
-	public void manualSort(int left, int right) {
-		int size = right - left + 1;
+	public void insertionSort(int left, int right) {
+		int in, out;
 
-		if (size == 1) return;
-		if (size == 2) {
-			if (theArray[left] > theArray[right]) {
-			       	swap(left, right);
-				return;
+		for (out = left + 1; out <= right; out++) {
+			long temp = theArray[out];
+			in = out;
+
+			while (in > left && theArray[in - 1] >= temp) {
+				theArray[in] = theArray[in - 1];
+				--in;
 			}
-		} else {
-			int center = right - 1;
-			if (theArray[left] > theArray[center]) swap(left, center);
-                	if (theArray[left] > theArray[right]) swap(left, right);
-                	if (theArray[center] > theArray[right]) swap(center, right);
-		}
 
+			theArray[in] = temp;
+		}
 	}
 }
